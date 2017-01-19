@@ -45,6 +45,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(159, 20);
             this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "192.168.1.102";
             // 
             // label1
             // 
@@ -70,6 +71,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(159, 20);
             this.textBox2.TabIndex = 3;
+            this.textBox2.Text = "admin";
             // 
             // maskedTextBox1
             // 
@@ -77,6 +79,7 @@
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(159, 20);
             this.maskedTextBox1.TabIndex = 4;
+            this.maskedTextBox1.Text = "admin";
             // 
             // label3
             // 
@@ -132,6 +135,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Name = "AutorizeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторизация";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
