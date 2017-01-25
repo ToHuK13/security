@@ -28,13 +28,14 @@ namespace security
         {
             Static.Con = new SqlConnection("Data Source='" + textBox1.Text + "';Password=078013;User ID=sa;Initial Catalog=LIG;Persist Security Info=True;"); 
             SqlDataAdapter sda = new SqlDataAdapter("Select Count(*) From Users where UserName = '" + textBox2.Text + "' and Password = '" + maskedTextBox1.Text + "'", Static.Con);
+            Static.Con.Open();
             DataTable dt = new DataTable();
             sda.Fill(dt);
             if (dt.Rows[0][0].ToString() == "1")
             {
                 this.Hide();   
                 Main ss = new Main();
-                ss.Show();
+                ss.ShowDialog();
             }
             else {
                 MessageBox.Show("check username or password");
