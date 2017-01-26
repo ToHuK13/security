@@ -18,6 +18,7 @@ namespace security
 
         public Main()
         {
+            
             InitializeComponent();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             ShowOgjects();
@@ -110,20 +111,32 @@ namespace security
 
         private void button5_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult result = MessageBox.Show(
+        "Вы действительно хотите удалить запись?",
+        "Сообщение",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Information,
+        MessageBoxDefaultButton.Button1,
+        MessageBoxOptions.DefaultDesktopOnly);
+
+            if (result == DialogResult.Yes)
             {
-                ID = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
-                DataTable Tabl = new DataTable();
-                string Zap = string.Format("DELETE from Clients where ID={0}", ID);
-                SqlCommand cmd = new SqlCommand(Zap, Static.Con);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Запись успешно удалена");
-                ShowClients();
+                try
+                {
+                    ID = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
+                    DataTable Tabl = new DataTable();
+                    string Zap = string.Format("DELETE from Clients where ID={0}", ID);
+                    SqlCommand cmd = new SqlCommand(Zap, Static.Con);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Запись успешно удалена");
+                    ShowClients();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ошибка удаления!");
+                }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Ошибка удаления!");
-            }
+    
         }
     }
 }
