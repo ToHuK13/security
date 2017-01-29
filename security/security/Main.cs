@@ -17,21 +17,20 @@ namespace security
         public static int ID;
 
         public Main()
-        {
-            
+        {      
             InitializeComponent();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ShowOgjects();
+            ShowObjects();
             ShowClients();
             dataGridView1.TopLeftHeaderCell.Value = "№ п/п";
             dataGridView1.Columns[0].Visible = false;
         }
 
 
-        public void ShowOgjects()
+        public void ShowObjects()
             {
             DataTable Tabl = new DataTable();
-            SqlDataAdapter Adap = new SqlDataAdapter("SELECT Objects.ID, ProtectionUnitName as [Подразделение охраны],  Objects.FileNumber as  Дело, ObjectCategory.ObjectCategoryName as Объект, PropertyTypes.PropertyTypeName as [Категория клиента] , (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as Заказчик, (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL('  д.'+Objects.House,'')+ISNULL('  к.'+Objects.Building,'') +ISNULL('  п.'+Objects.Entrance,'') +ISNULL('  кв.'+Objects.Room,'')) as Адрес,  (ISNULL(Objects.OS,'')+ISNULL(Objects.TS,'')+ISNULL(Objects.PS,'')) as [Средства охраны] , Responses.ResponseName as [Вид реагирования],Objects.ConsoleNumber as [Пультовой номер], Objects.KeyNumber as Ячейка FROM Objects LEFT JOIN ObjectCategory ON Objects.ObjectCategory= ObjectCategory.ID  LEFT JOIN Clients ON Objects.Client = Clients.ID  LEFT JOIN Citys ON Objects.City = Citys.ID LEFT JOIN Streets ON Objects.Street = Streets.ID LEFT JOIN ProtectionUnits on Objects.ProtectionUnit = ProtectionUnits.ID LEFT JOIN Responses ON Objects.Response = Responses.ID LEFT JOIN PropertyTypes ON Objects.PropertyType = PropertyTypes.ID", Static.Con);
+            SqlDataAdapter Adap = new SqlDataAdapter("SELECT Objects.ID, ProtectionUnitName as [Подразделение охраны],  Objects.FileNumber as  Дело, ObjectCategorys.ObjectCategoryName as Объект, PropertyTypes.PropertyTypeName as [Категория клиента] , (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as Заказчик, (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL('  д.'+Objects.House,'')+ISNULL('  к.'+Objects.Building,'') +ISNULL('  п.'+Objects.Entrance,'') +ISNULL('  кв.'+Objects.Room,'')) as Адрес,  (ISNULL(Objects.OS,'')+ISNULL(Objects.TS,'')+ISNULL(Objects.PS,'')) as [Система охраны] , Objects.ConsoleNumber as [Пультовой номер], Objects.KeyNumber as Ячейка FROM Objects LEFT JOIN ObjectCategorys ON Objects.ObjectCategory= ObjectCategorys.ID  LEFT JOIN Clients ON Objects.Client = Clients.ID  LEFT JOIN Citys ON Objects.City = Citys.ID LEFT JOIN Streets ON Objects.Street = Streets.ID LEFT JOIN ProtectionUnits on Objects.ProtectionUnit = ProtectionUnits.ID LEFT JOIN PropertyTypes ON Objects.PropertyType = PropertyTypes.ID", Static.Con);
             
             Adap.Fill(Tabl);
             dataGridView1.DataSource = Tabl;
@@ -48,7 +47,7 @@ namespace security
 
         private void Main_Load(object sender, EventArgs e)
         {
-            ShowOgjects();
+            ShowObjects();
         }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
@@ -67,7 +66,7 @@ namespace security
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ShowOgjects();
+            ShowObjects();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -84,24 +83,69 @@ namespace security
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             DataTable Tabl = new DataTable();
-            SqlDataAdapter Adap = new SqlDataAdapter("SELECT ProtectionUnitName as [Подразделение охраны],  Objects.FileNumber as  Дело, ObjectCategory.ObjectCategoryName as Объект, PropertyTypes.PropertyTypeName as [Категория клиента] , (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as Заказчик, (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL('  д.'+Objects.House,'')+ISNULL('  к.'+Objects.Building,'') +ISNULL('  п.'+Objects.Entrance,'') +ISNULL('  кв.'+Objects.Room,'')) as Адрес,  (ISNULL(Objects.OS,'')+ISNULL(Objects.TS,'')+ISNULL(Objects.PS,'')) as [Средства охраны] , Responses.ResponseName as [Вид реагирования],Objects.ConsoleNumber as [Пультовой номер], Objects.KeyNumber as Ячейка FROM Objects LEFT JOIN ObjectCategory ON Objects.ObjectCategory= ObjectCategory.ID  LEFT JOIN Clients ON Objects.Client = Clients.ID  LEFT JOIN Citys ON Objects.City = Citys.ID LEFT JOIN Streets ON Objects.Street = Streets.ID LEFT JOIN ProtectionUnits on Objects.ProtectionUnit = ProtectionUnits.ID LEFT JOIN Responses ON Objects.Response = Responses.ID LEFT JOIN PropertyTypes ON Objects.PropertyType = PropertyTypes.ID", Static.Con);
+            SqlDataAdapter Adap = new SqlDataAdapter("SELECT Objects.ID, ProtectionUnitName as [Подразделение охраны],  Objects.FileNumber as  Дело, ObjectCategorys.ObjectCategoryName as Объект, PropertyTypes.PropertyTypeName as [Категория клиента] , (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as Заказчик, (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL('  д.'+Objects.House,'')+ISNULL('  к.'+Objects.Building,'') +ISNULL('  п.'+Objects.Entrance,'') +ISNULL('  кв.'+Objects.Room,'')) as Адрес,  (ISNULL(Objects.OS,'')+ISNULL(Objects.TS,'')+ISNULL(Objects.PS,'')) as [Система охраны] ,Objects.ConsoleNumber as [Пультовой номер], Objects.KeyNumber as Ячейка FROM Objects LEFT JOIN ObjectCategorys ON Objects.ObjectCategory= ObjectCategorys.ID  LEFT JOIN Clients ON Objects.Client = Clients.ID  LEFT JOIN Citys ON Objects.City = Citys.ID LEFT JOIN Streets ON Objects.Street = Streets.ID LEFT JOIN ProtectionUnits on Objects.ProtectionUnit = ProtectionUnits.ID LEFT JOIN PropertyTypes ON Objects.PropertyType = PropertyTypes.ID", Static.Con);
             Adap.Fill(Tabl);
             DataView dv = new DataView(Tabl);
             dv.RowFilter = string.Format("Заказчик LIKE '%" + textBox1.Text + "%'");
             dataGridView1.DataSource = dv;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AddObject.ID = 0;
+            AddObject AddObj = new AddObject();
+            AddObj.ShowDialog();
+            ShowObjects();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            AddObject.ID = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
+            AddObject ObjEtd = new AddObject();
+            ObjEtd.ShowDialog();
+            ShowObjects();
+        }
+
+
+
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+       "Вы действительно хотите удалить запись?",
+       "Сообщение",
+       MessageBoxButtons.YesNo,
+       MessageBoxIcon.Information,
+       MessageBoxDefaultButton.Button1,
+       MessageBoxOptions.DefaultDesktopOnly);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    ID = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
+                    DataTable Tabl = new DataTable();
+                    string Zap = string.Format("DELETE from Objects where ID={0}", ID);
+                    SqlCommand cmd = new SqlCommand(Zap, Static.Con);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Запись успешно удалена");
+                    ShowObjects();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ошибка удаления!");
+                }
+            }
+        }
+        public void addCl()
         {
             AddClient.ID = 0;
             AddClient AddCl = new AddClient();
             AddCl.ShowDialog();
             ShowClients();
-
-
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        public void edtCl()
         {
             AddClient.ID = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
             AddClient CLEtd = new AddClient();
@@ -109,15 +153,15 @@ namespace security
             ShowClients();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        public void delCl()
         {
             DialogResult result = MessageBox.Show(
-        "Вы действительно хотите удалить запись?",
-        "Сообщение",
-        MessageBoxButtons.YesNo,
-        MessageBoxIcon.Information,
-        MessageBoxDefaultButton.Button1,
-        MessageBoxOptions.DefaultDesktopOnly);
+           "Вы действительно хотите удалить запись?",
+           "Сообщение",
+           MessageBoxButtons.YesNo,
+           MessageBoxIcon.Information,
+           MessageBoxDefaultButton.Button1,
+           MessageBoxOptions.DefaultDesktopOnly);
 
             if (result == DialogResult.Yes)
             {
@@ -136,7 +180,23 @@ namespace security
                     MessageBox.Show("Ошибка удаления!");
                 }
             }
-    
         }
+
+        private void дОБАВИТЬToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addCl();
+        }
+
+        private void иЗМЕНИТЬToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            edtCl();
+        }
+
+        private void уДАЛИТЬToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            delCl();
+        }
+
+
     }
 }
