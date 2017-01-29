@@ -55,6 +55,7 @@
             this.нАМОНТАЖToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.нАToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оТКАЗОТБЛОКРОВКИToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lIGDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userPrivilegesBindingSource)).BeginInit();
@@ -308,6 +309,11 @@
             this.оТКАЗОТБЛОКРОВКИToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.оТКАЗОТБЛОКРОВКИToolStripMenuItem.Text = "ОТКАЗ ОТ БЛОКРОВКИ";
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -368,5 +374,6 @@
         private System.Windows.Forms.ToolStripMenuItem нАМОНТАЖToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem нАToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оТКАЗОТБЛОКРОВКИToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
     }
 }
