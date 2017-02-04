@@ -214,17 +214,7 @@ namespace security
             delObj();
         }
 
-        private void toolStripMenuItem10_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void toolStripMenuItem5_Click(object sender, EventArgs e)
-        {
-            AddApp AddAp = new AddApp();
-            AddAp.ShowDialog();
-            ShowObjects();
-        }
 
 
 
@@ -232,6 +222,13 @@ namespace security
         {
             dataGridView1.ContextMenuStrip = contextMenuStrip2;
             addObj();
+        }
+
+        private void оБОРУДОВАНИЕToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddApp AddAp = new AddApp();
+            AddAp.ShowDialog();
+            ShowObjects();
         }
 
 
