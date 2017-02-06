@@ -49,13 +49,12 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.оБОРУДОВАНИЕToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.дОВЕРЕННЫЕЛИЦАToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сОСТАВИТЬАКТToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.пЕРВОНАЧАЛЬНЫЙToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.пЛАНОВЫЙToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +67,8 @@
             this.зАЯВКУЭЛЕКТРОМОНТЕРУToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сРАБОТКУToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.нАКОНТРОЛЬToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.дОБАВИТЬToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.иЗМЕНИТЬToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -140,19 +141,19 @@
             // журналУчетаЗаявленийПоОборудованиюToolStripMenuItem
             // 
             this.журналУчетаЗаявленийПоОборудованиюToolStripMenuItem.Name = "журналУчетаЗаявленийПоОборудованиюToolStripMenuItem";
-            this.журналУчетаЗаявленийПоОборудованиюToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
-            this.журналУчетаЗаявленийПоОборудованиюToolStripMenuItem.Text = "Журнал учета заявлений по оборудованию";
+            this.журналУчетаЗаявленийПоОборудованиюToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+            this.журналУчетаЗаявленийПоОборудованиюToolStripMenuItem.Text = "Журнал учета заявлений об оборудовании";
             // 
             // журналУчетаЗавленийПоДоговоруToolStripMenuItem
             // 
             this.журналУчетаЗавленийПоДоговоруToolStripMenuItem.Name = "журналУчетаЗавленийПоДоговоруToolStripMenuItem";
-            this.журналУчетаЗавленийПоДоговоруToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
-            this.журналУчетаЗавленийПоДоговоруToolStripMenuItem.Text = "Журнал учета заявлений по договору";
+            this.журналУчетаЗавленийПоДоговоруToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+            this.журналУчетаЗавленийПоДоговоруToolStripMenuItem.Text = "Журнал учета обращений по договору";
             // 
             // журналУчетаСработокToolStripMenuItem
             // 
             this.журналУчетаСработокToolStripMenuItem.Name = "журналУчетаСработокToolStripMenuItem";
-            this.журналУчетаСработокToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.журналУчетаСработокToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
             this.журналУчетаСработокToolStripMenuItem.Text = "Журнал учета сработок";
             // 
             // panel1
@@ -269,21 +270,7 @@
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.contextMenuStrip2.Name = "contextMenuStrip1";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(245, 164);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(244, 22);
-            this.toolStripMenuItem2.Text = "ИЗМЕНИТЬ";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(244, 22);
-            this.toolStripMenuItem3.Text = "УДАЛИТЬ";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(245, 142);
             // 
             // toolStripMenuItem4
             // 
@@ -291,35 +278,42 @@
             this.оБОРУДОВАНИЕToolStripMenuItem,
             this.toolStripMenuItem5,
             this.toolStripMenuItem7,
-            this.toolStripMenuItem8});
+            this.toolStripMenuItem8,
+            this.дОВЕРЕННЫЕЛИЦАToolStripMenuItem});
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(244, 22);
-            this.toolStripMenuItem4.Text = "НАПИСАТЬ ЗАЯВЛЕНИЕ";
+            this.toolStripMenuItem4.Text = "НАПИСАТЬ ЗАЯВЛЕНИЕ НА...";
             // 
             // оБОРУДОВАНИЕToolStripMenuItem
             // 
             this.оБОРУДОВАНИЕToolStripMenuItem.Name = "оБОРУДОВАНИЕToolStripMenuItem";
-            this.оБОРУДОВАНИЕToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.оБОРУДОВАНИЕToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.оБОРУДОВАНИЕToolStripMenuItem.Text = "ОБОРУДОВАНИЕ";
             this.оБОРУДОВАНИЕToolStripMenuItem.Click += new System.EventHandler(this.оБОРУДОВАНИЕToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(190, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(230, 22);
             this.toolStripMenuItem5.Text = "ПОДКЛЮЧЕНИЕ";
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(190, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(230, 22);
             this.toolStripMenuItem7.Text = "РАССРОЧКА";
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(190, 22);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(230, 22);
             this.toolStripMenuItem8.Text = "ОТКАЗ ОТ БЛОКРОВКИ";
+            // 
+            // дОВЕРЕННЫЕЛИЦАToolStripMenuItem
+            // 
+            this.дОВЕРЕННЫЕЛИЦАToolStripMenuItem.Name = "дОВЕРЕННЫЕЛИЦАToolStripMenuItem";
+            this.дОВЕРЕННЫЕЛИЦАToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.дОВЕРЕННЫЕЛИЦАToolStripMenuItem.Text = "ИЗМЕНЕНИЕ ДОВЕРЕННЫХ ЛИЦ";
             // 
             // сОСТАВИТЬАКТToolStripMenuItem
             // 
@@ -403,6 +397,20 @@
             this.нАКОНТРОЛЬToolStripMenuItem.Name = "нАКОНТРОЛЬToolStripMenuItem";
             this.нАКОНТРОЛЬToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.нАКОНТРОЛЬToolStripMenuItem.Text = "НА КОНТРОЛЬ";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(244, 22);
+            this.toolStripMenuItem2.Text = "ИЗМЕНИТЬ";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(244, 22);
+            this.toolStripMenuItem3.Text = "УДАЛИТЬ";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // contextMenuStrip1
             // 
@@ -527,5 +535,6 @@
         private System.Windows.Forms.ToolStripMenuItem журналУчетаЗаявленийПоОборудованиюToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem журналУчетаЗавленийПоДоговоруToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem журналУчетаСработокToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem дОВЕРЕННЫЕЛИЦАToolStripMenuItem;
     }
 }

@@ -20,8 +20,9 @@ namespace security
         {      
             InitializeComponent();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ShowObjects();
             ShowClients();
+            ShowObjects();
+
             dataGridView1.TopLeftHeaderCell.Value = "№ п/п";
             dataGridView1.Columns[0].Visible = false;
         }
@@ -33,20 +34,28 @@ namespace security
             //SqlDataAdapter Adap = new SqlDataAdapter("SELECT Objects.ID, ProtectionUnitName as [Подразделение охраны],  Objects.FileNumber as  Дело, ObjectCategorys.ObjectCategoryName as Объект, PropertyTypes.PropertyTypeName as [Категория клиента] , (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as Заказчик, (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL('  д.'+Objects.House,'')+ISNULL('  к.'+Objects.Building,'') +ISNULL('  п.'+Objects.Entrance,'') +ISNULL('  кв.'+Objects.Room,'')) as Адрес,  (ISNULL(Objects.OS,'')+ISNULL(Objects.TS,'')+ISNULL(Objects.PS,'')) as [Система охраны] , Objects.ConsoleNumber as [Пультовой номер], Objects.KeyNumber as Ячейка FROM Objects LEFT JOIN ObjectCategorys ON Objects.ObjectCategory= ObjectCategorys.ID  LEFT JOIN Clients ON Objects.Client = Clients.ID  LEFT JOIN Citys ON Objects.City = Citys.ID LEFT JOIN Streets ON Objects.Street = Streets.ID LEFT JOIN ProtectionUnits on Objects.ProtectionUnit = ProtectionUnits.ID LEFT JOIN PropertyTypes ON Objects.PropertyType = PropertyTypes.ID", Static.Con);           
             //Adap.Fill(Tabl);
             //dataGridView1.DataSource = Tabl;
-            DataTable Tabl = new DataTable();
-            SqlDataAdapter Adap = new SqlDataAdapter("SELECT Objects.ID, ProtectionUnitName as [Подразделение охраны],  Objects.FileNumber as  Дело, ObjectCategorys.ObjectCategoryName as Объект, PropertyTypes.PropertyTypeName as [Категория клиента] , (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as Заказчик, (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL('  д.'+Objects.House,'')+ISNULL('  к.'+Objects.Building,'') +ISNULL('  п.'+Objects.Entrance,'') +ISNULL('  кв.'+Objects.Room,'')) as Адрес,  (ISNULL(Objects.OS,'')+ISNULL(Objects.TS,'')+ISNULL(Objects.PS,'')) as [Система охраны] ,Objects.ConsoleNumber as [Пультовой номер], Objects.KeyNumber as Ячейка FROM Objects LEFT JOIN ObjectCategorys ON Objects.ObjectCategory= ObjectCategorys.ID  LEFT JOIN Clients ON Objects.Client = Clients.ID  LEFT JOIN Citys ON Objects.City = Citys.ID LEFT JOIN Streets ON Objects.Street = Streets.ID LEFT JOIN ProtectionUnits on Objects.ProtectionUnit = ProtectionUnits.ID LEFT JOIN PropertyTypes ON Objects.PropertyType = PropertyTypes.ID", Static.Con);
-            Adap.Fill(Tabl);
-            DataView dv = new DataView(Tabl);
-            dv.RowFilter = string.Format("Заказчик LIKE '%" + textBox1.Text + "%' or Адрес LIKE '%" + textBox1.Text + "%' ");
-            dataGridView1.DataSource = dv;
+            DataTable TablObj = new DataTable();
+            SqlDataAdapter AdapObj = new SqlDataAdapter("SELECT Objects.ID, ProtectionUnitName as [Подразделение охраны],  Objects.FileNumber as  Дело, ObjectCategorys.ObjectCategoryName as Объект, PropertyTypes.PropertyTypeName as [Категория клиента] , (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as Заказчик, (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL('  д.'+Objects.House,'')+ISNULL('  к.'+Objects.Building,'') +ISNULL('  п.'+Objects.Entrance,'') +ISNULL('  кв.'+Objects.Room,'')) as Адрес,  (ISNULL(Objects.OS,'')+ISNULL(Objects.TS,'')+ISNULL(Objects.PS,'')) as [Система охраны] ,Objects.ConsoleNumber as [Пультовой номер], Objects.KeyNumber as Ячейка FROM Objects LEFT JOIN ObjectCategorys ON Objects.ObjectCategory= ObjectCategorys.ID  LEFT JOIN Clients ON Objects.Client = Clients.ID  LEFT JOIN Citys ON Objects.City = Citys.ID LEFT JOIN Streets ON Objects.Street = Streets.ID LEFT JOIN ProtectionUnits on Objects.ProtectionUnit = ProtectionUnits.ID LEFT JOIN PropertyTypes ON Objects.PropertyType = PropertyTypes.ID", Static.Con);
+            AdapObj.Fill(TablObj);
+            DataView dvObj = new DataView(TablObj);
+            dvObj.RowFilter = string.Format("Заказчик LIKE '%" + textBox1.Text + "%' or Адрес LIKE '%" + textBox1.Text + "%' ");
+            dataGridView1.DataSource = dvObj;
     }
 
         public void ShowClients()
         {
-            DataTable Tabl = new DataTable();
-            SqlDataAdapter Adap = new SqlDataAdapter("SELECT Clients.ID, (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as [Ф.И.О], (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL(' д.'+Clients.House,'')+ISNULL(' к.'+Clients.Building,'')+ISNULL(' кв.'+Clients.Room,'')) as [Адрес места жительства],  ISNULL(Clients.MobilPhone,'')+' '+MobileOperators.MobileOperatorName as [Мобильный телефон], Clients.HomePhone as [Домашний телефон],  ClientCategorys.ClientCategoryName as [Категория клиента] FROM Clients  LEFT JOIN Citys ON  Clients.City=Citys.ID  LEFT JOIN Streets ON Clients.Street= Streets.ID LEFT JOIN MobileOperators ON Clients.MobileOperator=MobileOperators.ID LEFT JOIN ClientCategorys ON Clients.ClientCategory=ClientCategorys.ID", Static.Con);
-            Adap.Fill(Tabl);
-            dataGridView1.DataSource = Tabl;
+            //DataTable Tabl = new DataTable();
+            //SqlDataAdapter Adap = new SqlDataAdapter("SELECT Clients.ID, (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as [Ф.И.О], (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL(' д.'+Clients.House,'')+ISNULL(' к.'+Clients.Building,'')+ISNULL(' кв.'+Clients.Room,'')) as [Адрес места жительства],  ISNULL(Clients.MobilPhone,'')+' '+MobileOperators.MobileOperatorName as [Мобильный телефон], Clients.HomePhone as [Домашний телефон],  ClientCategorys.ClientCategoryName as [Категория клиента] FROM Clients  LEFT JOIN Citys ON  Clients.City=Citys.ID  LEFT JOIN Streets ON Clients.Street= Streets.ID LEFT JOIN MobileOperators ON Clients.MobileOperator=MobileOperators.ID LEFT JOIN ClientCategorys ON Clients.ClientCategory=ClientCategorys.ID", Static.Con);
+            //Adap.Fill(Tabl);
+            //dataGridView1.DataSource = Tabl;
+
+            DataTable TablCl = new DataTable();
+            SqlDataAdapter AdapCL = new SqlDataAdapter("SELECT Clients.ID, (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as [Ф.И.О], (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL(' д.'+Clients.House,'')+ISNULL(' к.'+Clients.Building,'')+ISNULL(' кв.'+Clients.Room,'')) as [Адрес места жительства],  ISNULL(Clients.MobilPhone,'')+' '+MobileOperators.MobileOperatorName as [Мобильный телефон], Clients.HomePhone as [Домашний телефон],  ClientCategorys.ClientCategoryName as [Категория клиента] FROM Clients  LEFT JOIN Citys ON  Clients.City=Citys.ID  LEFT JOIN Streets ON Clients.Street= Streets.ID LEFT JOIN MobileOperators ON Clients.MobileOperator=MobileOperators.ID LEFT JOIN ClientCategorys ON Clients.ClientCategory=ClientCategorys.ID", Static.Con);
+            AdapCL.Fill(TablCl);
+            DataView dvCl = new DataView(TablCl);
+            dvCl.RowFilter = string.Format("[Ф.И.О] LIKE '%" + textBox1.Text + "%' or [Адрес места жительства] LIKE '%" + textBox1.Text + "%' ");
+            dataGridView1.DataSource = dvCl;
+
         }
 
 
@@ -82,9 +91,7 @@ namespace security
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
-        {
-         
-
+        {         
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -226,6 +233,7 @@ namespace security
 
         private void оБОРУДОВАНИЕToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AddApp.ObjectID = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
             AddApp AddAp = new AddApp();
             AddAp.ShowDialog();
             ShowObjects();
