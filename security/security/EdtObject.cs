@@ -18,12 +18,14 @@ namespace security
         {
             InitializeComponent();
             ShowTrustees();
+            ShowLogSt();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.TopLeftHeaderCell.Value = "№ п/п";
-            dataGridView1.Columns[0].Visible = false;
+
         }
 
-        private void ShowTrustees()
+
+
+        private void EdtObject_Load(object sender, EventArgs e)
         {
             DataTable TablAC1 = new DataTable();
             SqlDataAdapter AdapAC1 = new SqlDataAdapter("SELECT * FROM ProtectionUnits", Static.Con);
@@ -67,17 +69,10 @@ namespace security
             comboBox6.DisplayMember = "PropertyTypeName";
             comboBox6.ValueMember = "ID";
 
-
             DataTable Tabl = new DataTable();
             string sql = string.Format("SELECT * FROM Objects WHERE ID={0}", ObjectID);
             SqlDataAdapter Adap = new SqlDataAdapter(sql, Static.Con);
             Adap.Fill(Tabl);
-
-            DataTable TablTrust = new DataTable();
-            string sqlTr = string.Format("select Trustees.ID, (ISNULL(Trustees.Surname,'')+ISNULL(' '+Trustees.Name,'')+ISNULL(' '+Trustees.MiddleName,'')) as [Ф.И.О], (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL(' д.'+Trustees.House,'')+ISNULL(' к.'+Trustees.Building,'')+ISNULL(' кв.'+Trustees.Room,'')) as [Адрес места жительства],  ISNULL(Trustees.MobilPhone,'')+' '+MobileOperators.MobileOperatorName as [Мобильный телефон], Trustees.HomePhone as [Домашний телефон], Trustees.Work as [Место работы]  from Trustees LEFT JOIN Citys ON  Trustees.City=Citys.ID  LEFT JOIN Streets ON Trustees.Street= Streets.ID LEFT JOIN MobileOperators ON Trustees.MobileOperator=MobileOperators.ID  WHERE Trustees.Object={0}", ObjectID);
-            SqlDataAdapter AdapTr = new SqlDataAdapter(sqlTr, Static.Con);
-            AdapTr.Fill(TablTrust);
-            dataGridView1.DataSource = TablTrust;
 
             textBox10.Text = Tabl.Rows[0]["FileNumber"].ToString();
             comboBox1.SelectedValue = int.Parse(Tabl.Rows[0]["ProtectionUnit"].ToString());
@@ -100,27 +95,15 @@ namespace security
             textBox13.Text = Tabl.Rows[0]["Keys"].ToString();
         }
 
-
-        private void EdtObject_Load(object sender, EventArgs e)
-        {
-            ShowTrustees();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             string Zap;
             Zap = string.Format("UPDATE Objects SET " +
-                "FileNumber='{0}', ProtectionUnit='{1}', ObjectCategory='{2}', Client='{3}', City='{4}', Street='{5}'                , PropertyType='{6}', House='{7}', Building='{8}', Entrance='{9}', Level='{10}', Room='{11}',                 CountRoom='{12}' ,  HomePhone='{13}' , Intercom='{14}', KeyNumber='{15}', Description='{16}',                Blocking='{17}',Keys='{18}' WHERE ID='{19}' ",
+            "FileNumber='{0}', ProtectionUnit='{1}', ObjectCategory='{2}', Client='{3}', City='{4}', Street='{5}'                , PropertyType='{6}', House='{7}', Building='{8}', Entrance='{9}', Level='{10}', Room='{11}',                 CountRoom='{12}' ,  HomePhone='{13}' , Intercom='{14}', KeyNumber='{15}', Description='{16}',                Blocking='{17}',Keys='{18}' WHERE ID='{19}' ",
             textBox10.Text, comboBox1.SelectedValue, comboBox2.SelectedValue, comboBox3.SelectedValue, comboBox4.SelectedValue, comboBox5.SelectedValue, comboBox6.SelectedValue, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text, textBox7.Text, textBox8.Text, textBox9.Text, textBox11.Text, textBox12.Text, textBox13.Text, ObjectID);
             SqlCommand cmd = new SqlCommand(Zap, Static.Con);
             cmd.ExecuteNonQuery();
             this.Close();
-        }
-
-        private void tabControl1_Selected(object sender, TabControlEventArgs e)
-        {
-
-
         }
 
         private void дОБАВИТЬToolStripMenuItem_Click(object sender, EventArgs e)
@@ -130,7 +113,6 @@ namespace security
             AddTrust AddTr = new AddTrust();
             AddTr.ShowDialog();
             ShowTrustees();
-
         }
 
         private void иЗМЕНИТЬToolStripMenuItem_Click(object sender, EventArgs e)
@@ -145,13 +127,12 @@ namespace security
         private void уДАЛИТЬToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
-"Вы действительно хотите удалить запись?",
-"Сообщение",
-MessageBoxButtons.YesNo,
-MessageBoxIcon.Information,
-MessageBoxDefaultButton.Button1,
-MessageBoxOptions.DefaultDesktopOnly);
-
+                "Вы действительно хотите удалить запись?",
+                "Сообщение",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1,
+                MessageBoxOptions.DefaultDesktopOnly);
             if (result == DialogResult.Yes)
             {
                 try
@@ -179,6 +160,44 @@ MessageBoxOptions.DefaultDesktopOnly);
             if (header == null || !header.Equals(indexStr))
                 this.dataGridView1.Rows[index].HeaderCell.Value = indexStr;
         }
+
+
+        private void ShowTrustees()
+        {
+            DataTable TablTrust = new DataTable();
+            string sqlTr = string.Format("Select Trustees.ID, (ISNULL(Trustees.Surname,'')+ISNULL(' '+Trustees.Name,'')+ISNULL(' '+Trustees.MiddleName,'')) as [Ф.И.О], (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL(' д.'+Trustees.House,'')+ISNULL(' к.'+Trustees.Building,'')+ISNULL(' кв.'+Trustees.Room,'')) as [Адрес места жительства],  ISNULL(Trustees.MobilPhone,'')+' '+MobileOperators.MobileOperatorName as [Мобильный телефон], Trustees.HomePhone as [Домашний телефон], Trustees.Work as [Место работы]  from Trustees LEFT JOIN Citys ON  Trustees.City=Citys.ID  LEFT JOIN Streets ON Trustees.Street= Streets.ID LEFT JOIN MobileOperators ON Trustees.MobileOperator=MobileOperators.ID  WHERE Trustees.Object={0}", ObjectID);
+            SqlDataAdapter AdapTr = new SqlDataAdapter(sqlTr, Static.Con);
+            AdapTr.Fill(TablTrust);
+            dataGridView1.DataSource = TablTrust;
+            dataGridView1.TopLeftHeaderCell.Value = "№ п/п";
+            dataGridView1.Columns[0].Visible = false;
+        }
+        private void ShowLogSt()
+        {
+            DataTable TablLogSt = new DataTable();
+            string sqlLogSt = string.Format("Select ID, Date as Дата, RegNum as [Регистрационный номер],Title as Описание From LogStatements WHERE LogStatements.Object={0}", ObjectID);
+            SqlDataAdapter AdapLogSt = new SqlDataAdapter(sqlLogSt, Static.Con);
+            AdapLogSt.Fill(TablLogSt);
+            dataGridView2.DataSource = TablLogSt;
+            dataGridView2.TopLeftHeaderCell.Value = "№ п/п";
+            dataGridView2.Columns[0].Visible = false;
+        }
+
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 4)
+            {
+                ShowLogSt();
+            }
+
+            if (tabControl1.SelectedIndex == 1)
+            {
+                ShowTrustees();
+            }
+        }
+
+
 
     }
 }

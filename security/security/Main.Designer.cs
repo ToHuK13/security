@@ -270,7 +270,7 @@
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.contextMenuStrip2.Name = "contextMenuStrip1";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(245, 142);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(245, 164);
             // 
             // toolStripMenuItem4
             // 

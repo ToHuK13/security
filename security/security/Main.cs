@@ -233,6 +233,7 @@ namespace security
 
         private void оБОРУДОВАНИЕToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AddApp.LogStID = 0;
             AddApp.ObjectID = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
             AddApp AddAp = new AddApp();
             AddAp.ShowDialog();
