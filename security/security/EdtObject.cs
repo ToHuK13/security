@@ -20,7 +20,7 @@ namespace security
             ShowTrustees();
             ShowLogSt();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
 
@@ -104,6 +104,7 @@ namespace security
             SqlCommand cmd = new SqlCommand(Zap, Static.Con);
             cmd.ExecuteNonQuery();
             this.Close();
+            
         }
 
         private void дОБАВИТЬToolStripMenuItem_Click(object sender, EventArgs e)
@@ -113,6 +114,7 @@ namespace security
             AddTrust AddTr = new AddTrust();
             AddTr.ShowDialog();
             ShowTrustees();
+            
         }
 
         private void иЗМЕНИТЬToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,7 +160,7 @@ namespace security
             string indexStr = (index + 1).ToString();
             object header = this.dataGridView1.Rows[index].HeaderCell.Value;
             if (header == null || !header.Equals(indexStr))
-                this.dataGridView1.Rows[index].HeaderCell.Value = indexStr;
+            this.dataGridView1.Rows[index].HeaderCell.Value = indexStr;
         }
 
 
@@ -175,7 +177,7 @@ namespace security
         private void ShowLogSt()
         {
             DataTable TablLogSt = new DataTable();
-            string sqlLogSt = string.Format("Select ID, Date as Дата, RegNum as [Регистрационный номер],Title as Описание From LogStatements WHERE LogStatements.Object={0}", ObjectID);
+            string sqlLogSt = string.Format("Select LogStatements.ID, Date as Дата, RegNum as [Регистрационный номер],Title as Описание, Officials.Surname+' '+ Left(Officials.Name,1)+'.'+ Left(Officials.MiddleName,1)+'.' as Принял From LogStatements Left Join Officials on LogStatements.Official=Officials.ID WHERE LogStatements.Object={0}", ObjectID);
             SqlDataAdapter AdapLogSt = new SqlDataAdapter(sqlLogSt, Static.Con);
             AdapLogSt.Fill(TablLogSt);
             dataGridView2.DataSource = TablLogSt;
@@ -195,6 +197,15 @@ namespace security
             {
                 ShowTrustees();
             }
+        }
+
+        private void dataGridView2_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            int index = e.RowIndex;
+            string indexStr = (index + 1).ToString();
+            object header = this.dataGridView2.Rows[index].HeaderCell.Value;
+            if (header == null || !header.Equals(indexStr))
+            this.dataGridView2.Rows[index].HeaderCell.Value = indexStr;
         }
 
 

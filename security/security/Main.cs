@@ -15,14 +15,14 @@ namespace security
     public partial class Main : Form
     {
         public static int ClientID, ObjectID;
+        
 
         public Main()
-        {      
+        {           
             InitializeComponent();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             ShowClients();
-            ShowObjects();
-
+            ShowObjects();           
             dataGridView1.TopLeftHeaderCell.Value = "№ п/п";
             dataGridView1.Columns[0].Visible = false;
         }
@@ -30,10 +30,6 @@ namespace security
 
         public void ShowObjects()
             {
-            //DataTable Tabl = new DataTable();
-            //SqlDataAdapter Adap = new SqlDataAdapter("SELECT Objects.ID, ProtectionUnitName as [Подразделение охраны],  Objects.FileNumber as  Дело, ObjectCategorys.ObjectCategoryName as Объект, PropertyTypes.PropertyTypeName as [Категория клиента] , (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as Заказчик, (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL('  д.'+Objects.House,'')+ISNULL('  к.'+Objects.Building,'') +ISNULL('  п.'+Objects.Entrance,'') +ISNULL('  кв.'+Objects.Room,'')) as Адрес,  (ISNULL(Objects.OS,'')+ISNULL(Objects.TS,'')+ISNULL(Objects.PS,'')) as [Система охраны] , Objects.ConsoleNumber as [Пультовой номер], Objects.KeyNumber as Ячейка FROM Objects LEFT JOIN ObjectCategorys ON Objects.ObjectCategory= ObjectCategorys.ID  LEFT JOIN Clients ON Objects.Client = Clients.ID  LEFT JOIN Citys ON Objects.City = Citys.ID LEFT JOIN Streets ON Objects.Street = Streets.ID LEFT JOIN ProtectionUnits on Objects.ProtectionUnit = ProtectionUnits.ID LEFT JOIN PropertyTypes ON Objects.PropertyType = PropertyTypes.ID", Static.Con);           
-            //Adap.Fill(Tabl);
-            //dataGridView1.DataSource = Tabl;
             DataTable TablObj = new DataTable();
             SqlDataAdapter AdapObj = new SqlDataAdapter("SELECT Objects.ID, ProtectionUnitName as [Подразделение охраны],  Objects.FileNumber as  Дело, ObjectCategorys.ObjectCategoryName as Объект, PropertyTypes.PropertyTypeName as [Категория клиента] , (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as Заказчик, (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL('  д.'+Objects.House,'')+ISNULL('  к.'+Objects.Building,'') +ISNULL('  п.'+Objects.Entrance,'') +ISNULL('  кв.'+Objects.Room,'')) as Адрес,  (ISNULL(Objects.OS,'')+ISNULL(Objects.TS,'')+ISNULL(Objects.PS,'')) as [Система охраны] ,Objects.ConsoleNumber as [Пультовой номер], Objects.KeyNumber as Ячейка FROM Objects LEFT JOIN ObjectCategorys ON Objects.ObjectCategory= ObjectCategorys.ID  LEFT JOIN Clients ON Objects.Client = Clients.ID  LEFT JOIN Citys ON Objects.City = Citys.ID LEFT JOIN Streets ON Objects.Street = Streets.ID LEFT JOIN ProtectionUnits on Objects.ProtectionUnit = ProtectionUnits.ID LEFT JOIN PropertyTypes ON Objects.PropertyType = PropertyTypes.ID", Static.Con);
             AdapObj.Fill(TablObj);
@@ -44,18 +40,12 @@ namespace security
 
         public void ShowClients()
         {
-            //DataTable Tabl = new DataTable();
-            //SqlDataAdapter Adap = new SqlDataAdapter("SELECT Clients.ID, (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as [Ф.И.О], (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL(' д.'+Clients.House,'')+ISNULL(' к.'+Clients.Building,'')+ISNULL(' кв.'+Clients.Room,'')) as [Адрес места жительства],  ISNULL(Clients.MobilPhone,'')+' '+MobileOperators.MobileOperatorName as [Мобильный телефон], Clients.HomePhone as [Домашний телефон],  ClientCategorys.ClientCategoryName as [Категория клиента] FROM Clients  LEFT JOIN Citys ON  Clients.City=Citys.ID  LEFT JOIN Streets ON Clients.Street= Streets.ID LEFT JOIN MobileOperators ON Clients.MobileOperator=MobileOperators.ID LEFT JOIN ClientCategorys ON Clients.ClientCategory=ClientCategorys.ID", Static.Con);
-            //Adap.Fill(Tabl);
-            //dataGridView1.DataSource = Tabl;
-
             DataTable TablCl = new DataTable();
             SqlDataAdapter AdapCL = new SqlDataAdapter("SELECT Clients.ID, (ISNULL(Clients.Surname,'')+ISNULL(' '+Clients.Name,'')+ISNULL(' '+Clients.MiddleName,'')) as [Ф.И.О], (ISNULL(Citys.CityName,'')+ISNULL(' '+Streets.StreetName,'')+ISNULL(' д.'+Clients.House,'')+ISNULL(' к.'+Clients.Building,'')+ISNULL(' кв.'+Clients.Room,'')) as [Адрес места жительства],  ISNULL(Clients.MobilPhone,'')+' '+MobileOperators.MobileOperatorName as [Мобильный телефон], Clients.HomePhone as [Домашний телефон],  ClientCategorys.ClientCategoryName as [Категория клиента] FROM Clients  LEFT JOIN Citys ON  Clients.City=Citys.ID  LEFT JOIN Streets ON Clients.Street= Streets.ID LEFT JOIN MobileOperators ON Clients.MobileOperator=MobileOperators.ID LEFT JOIN ClientCategorys ON Clients.ClientCategory=ClientCategorys.ID", Static.Con);
             AdapCL.Fill(TablCl);
             DataView dvCl = new DataView(TablCl);
             dvCl.RowFilter = string.Format("[Ф.И.О] LIKE '%" + textBox1.Text + "%' or [Адрес места жительства] LIKE '%" + textBox1.Text + "%' ");
             dataGridView1.DataSource = dvCl;
-
         }
 
 
@@ -75,17 +65,21 @@ namespace security
             string indexStr = (index + 1).ToString();
             object header = this.dataGridView1.Rows[index].HeaderCell.Value;
             if (header == null || !header.Equals(indexStr))
-                this.dataGridView1.Rows[index].HeaderCell.Value = indexStr;
+            this.dataGridView1.Rows[index].HeaderCell.Value = indexStr;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            ClientID = 0;
+            ObjectID = 1;
             dataGridView1.ContextMenuStrip = contextMenuStrip2;
             ShowObjects();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
+            ClientID = 1;
+            ObjectID = 0;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
             ShowClients();
         }
@@ -206,10 +200,7 @@ namespace security
             }
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
@@ -229,6 +220,7 @@ namespace security
         {
             dataGridView1.ContextMenuStrip = contextMenuStrip2;
             addObj();
+            ShowClients();
         }
 
         private void оБОРУДОВАНИЕToolStripMenuItem_Click(object sender, EventArgs e)
@@ -238,6 +230,46 @@ namespace security
             AddApp AddAp = new AddApp();
             AddAp.ShowDialog();
             ShowObjects();
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            AddCon.LogStID = 0;
+            AddCon.ObjectID = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
+            AddCon AddCo = new AddCon();
+            AddCo.ShowDialog();
+            ShowObjects();
+        }
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            AddUnLockApp.LogStID = 0;
+            AddUnLockApp.ObjectID = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
+            AddUnLockApp AddUnLApp = new AddUnLockApp();
+            AddUnLApp.ShowDialog();
+            ShowObjects();
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ClientID == 0)  
+                edtObj(); 
+            else 
+                edtCl();
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (!e.RowIndex.Equals(-1) && !e.ColumnIndex.Equals(-1) && e.Button.Equals(MouseButtons.Right))
+            {
+                dataGridView1.CurrentCell = dataGridView1[e.ColumnIndex, e.RowIndex];
+                dataGridView1.CurrentRow.Selected = true;
+            }
         }
 
 

@@ -52,8 +52,8 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.оБОРУДОВАНИЕToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.дОВЕРЕННЫЕЛИЦАToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сОСТАВИТЬАКТToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.пЕРВОНАЧАЛЬНЫЙToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -257,6 +257,9 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(803, 327);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
+            this.dataGridView1.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDown);
             this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
             // 
             // contextMenuStrip2
@@ -270,15 +273,15 @@
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.contextMenuStrip2.Name = "contextMenuStrip1";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(245, 164);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(245, 142);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.оБОРУДОВАНИЕToolStripMenuItem,
             this.toolStripMenuItem5,
-            this.toolStripMenuItem7,
             this.toolStripMenuItem8,
+            this.toolStripMenuItem7,
             this.дОВЕРЕННЫЕЛИЦАToolStripMenuItem});
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(244, 22);
@@ -296,18 +299,20 @@
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(230, 22);
             this.toolStripMenuItem5.Text = "ПОДКЛЮЧЕНИЕ";
-            // 
-            // toolStripMenuItem7
-            // 
-            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(230, 22);
-            this.toolStripMenuItem7.Text = "РАССРОЧКА";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
             this.toolStripMenuItem8.Size = new System.Drawing.Size(230, 22);
             this.toolStripMenuItem8.Text = "ОТКАЗ ОТ БЛОКРОВКИ";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(230, 22);
+            this.toolStripMenuItem7.Text = "РАССРОЧКА";
             // 
             // дОВЕРЕННЫЕЛИЦАToolStripMenuItem
             // 
@@ -378,7 +383,6 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(244, 22);
             this.toolStripMenuItem1.Text = "ДОБАВИТЬ";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // зАЯВКУЭЛЕКТРОМОНТЕРУToolStripMenuItem
             // 

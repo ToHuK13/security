@@ -59,6 +59,12 @@
     <Compile Include="AddClient.Designer.cs">
       <DependentUpon>AddClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddCon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCon.Designer.cs">
+      <DependentUpon>AddCon.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddObject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,12 @@
     </Compile>
     <Compile Include="AddTrust.Designer.cs">
       <DependentUpon>AddTrust.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddUnLockApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUnLockApp.Designer.cs">
+      <DependentUpon>AddUnLockApp.cs</DependentUpon>
     </Compile>
     <Compile Include="EdtObject.cs">
       <SubType>Form</SubType>
@@ -103,11 +115,17 @@
     <EmbeddedResource Include="AddClient.resx">
       <DependentUpon>AddClient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddCon.resx">
+      <DependentUpon>AddCon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddObject.resx">
       <DependentUpon>AddObject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddTrust.resx">
       <DependentUpon>AddTrust.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddUnLockApp.resx">
+      <DependentUpon>AddUnLockApp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EdtObject.resx">
       <DependentUpon>EdtObject.cs</DependentUpon>
