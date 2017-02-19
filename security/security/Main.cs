@@ -258,11 +258,6 @@ namespace security
                 edtCl();
         }
 
-        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
-        }
-
         private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (!e.RowIndex.Equals(-1) && !e.ColumnIndex.Equals(-1) && e.Button.Equals(MouseButtons.Right))
@@ -271,6 +266,7 @@ namespace security
                 dataGridView1.CurrentRow.Selected = true;
             }
         }
+
 
 
 
